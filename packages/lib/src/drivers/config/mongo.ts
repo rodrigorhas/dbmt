@@ -1,0 +1,3 @@
+const createMongo = () => {};
+
+export default {};
