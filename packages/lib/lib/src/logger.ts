@@ -17,7 +17,7 @@ export const Logger = createLogger({
   transports: [
     new transports.File({
       filename: `.logs/session__${startDate}.log`,
-      level: 'debug'
+      level: 'info'
     }),
     new transports.Console({
       format: format.combine(

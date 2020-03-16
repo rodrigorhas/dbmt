@@ -1,5 +1,18 @@
 import { WhitelabelUnifyAccessPipeline } from './pipelines';
-import { ApplicationContainer } from '@dbmt/lib';
+import { ApplicationContainer, Logger } from '@dbmt/lib';
+import { TaxipagMariaProduction, TaxipagMongoDevelopment } from './drivers/taxipag';
+import environments from './environments';
 
-const container = new ApplicationContainer();
-container.prepare(WhitelabelUnifyAccessPipeline, []);
+
+async function main () {
+  const container = new ApplicationContainer(environments);
+  
+  await container.runPipeline(WhitelabelUnifyAccessPipeline, {
+    'maria-from': TaxipagMariaProduction,
+    'mongo-to': TaxipagMongoDevelopment,
+  });
+
+  Logger.info('[dbmt] Done succesfully')
+}
+
+main()

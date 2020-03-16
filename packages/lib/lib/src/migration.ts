@@ -10,7 +10,7 @@ export interface StaticMigration<T> {
   connections: Array<MigrationRequiredConnection<any>>;
 }
 
-interface MigrationRequiredConnection<T extends AbstractConnector<any>> {
+export interface MigrationRequiredConnection<T extends AbstractConnector<any>> {
   name: string;
   description: string;
   type: Type<T>;

@@ -18,7 +18,6 @@ export class WhitelabelUnifyAccessPipeline extends Pipeline {
   ];
 
   /* create method can be used to customize steps */
-  public create() {}
-
-  public run() {}
+  public async create() {}
+  public async run() {}
 }

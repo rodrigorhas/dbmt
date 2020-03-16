@@ -3,8 +3,13 @@ import { ConnectorContext } from '../types';
 import { AbstractConnector } from './AbstractConnector';
 
 export class MongoDBConnector extends AbstractConnector<mongodb.MongoClient> {
-  public async create(options: ConnectorContext) {
-    const connection = await mongodb.connect(options.env.URI);
+  public async create(options?: ConnectorContext) {
+    const env = options && options.env || this.env;
+    const connection = await mongodb.connect(env.URI, {
+      useUnifiedTopology: true
+    });
+
+    this.connection = connection;
 
     return {
       connection,

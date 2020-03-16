@@ -1,10 +1,23 @@
+import { ConnectionManager, DriverConfig } from './drivers';
 import { Pipeline, StaticPipeline } from './pipeline';
-import { Type } from './types';
 
 export class ApplicationContainer {
-  public prepare(pipeline: StaticPipeline<Pipeline>, connectionConfigs: any[]) {
+  constructor (private env: any) {}
+
+  public async runPipeline(
+    pipeline: StaticPipeline<Pipeline>,
+    configMap: Record<string, DriverConfig<any, any>>,
+  ) {
     const pipe = new pipeline();
 
-    console.log(pipeline.steps);
+    const connectionManager = new ConnectionManager(configMap, this.env)
+
+    /* create connections and map to ConnectionManager */
+    /* await connectionManager.createStepConnections(pipeline.steps) */
+
+    await pipe.create()
+    await pipe.run(pipeline.steps, connectionManager)
+
+    await connectionManager.dispose();
   }
 }

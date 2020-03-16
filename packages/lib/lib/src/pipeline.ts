@@ -1,5 +1,6 @@
+import { ConnectionManager } from './drivers';
+import { Logger } from './logger';
 import { Migration, StaticMigration } from './migration';
-import { Type } from './types';
 
 export interface StaticPipeline<T> {
   new (...args: any[]): T;
@@ -13,8 +14,22 @@ export abstract class Pipeline {
   public static id: string;
   public static description?: string;
 
-  public static steps: Array<Type<Migration>>
+  public static steps: Array<StaticMigration<Migration>>
 
-  public create() {}
-  public run() {}
+  public async create() {}
+  public async run(steps: Array<StaticMigration<Migration>>, connectionManager: ConnectionManager) {
+    const constructor = this.constructor as StaticPipeline<Pipeline>;
+
+    Logger.info(`[dbmt] Running pipeline '${constructor.id}'`)
+
+    for (const step of steps) {
+      const migration = new step(connectionManager)
+      
+      Logger.info(`[dbmt] Starting migration '${step.id}'`)
+      await migration.run()
+      Logger.info(`[dbmt] Done migration '${step.id}'`)
+    }
+
+    Logger.info(`[dbmt] Done pipeline '${constructor.id}'`)
+  }
 }

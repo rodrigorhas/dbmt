@@ -1,12 +1,14 @@
 import { ConnectorContext } from '../types';
 
+export interface ConnectorConnection<T> {
+  connection: T;
+  dispose(): Promise<any>;
+}
+
 export interface IAbstractConnector<T> {
   create(
     options: ConnectorContext
-  ): Promise<{
-    connection: T;
-    dispose(): Promise<any>;
-  }>;
+  ): Promise<ConnectorConnection<T>>;
 
   dispose(): Promise<any>;
 }
@@ -17,8 +19,8 @@ export abstract class AbstractConnector<T> implements IAbstractConnector<T> {
   constructor(protected env: any) {}
 
   create(
-    options: ConnectorContext
-  ): Promise<{ connection: T; dispose(): Promise<any> }> {
+    options?: ConnectorContext
+  ): Promise<ConnectorConnection<T>> {
     throw new Error(`Method not implemented at ${this}.`);
   }
 
