@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "date-fns": "^2.11.0",
+    "ntypescript": "^1.201706190042.1",
     "reflect-metadata": "^0.1.13",
     "winston": "^3.2.1",
     "winston-console-format": "^1.0.5"
@@ -17,6 +18,8 @@
   "devDependencies": {
     "@types/mongodb": "^3.5.2",
     "mariadb": "^2.2.0",
-    "mongodb": "^3.5.5"
+    "mongodb": "^3.5.5",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
   }
 }
