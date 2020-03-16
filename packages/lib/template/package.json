@@ -2,12 +2,17 @@
   "name": "@dbmt/template",
   "version": "1.0.0",
   "license": "MIT",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node -r tsconfig-paths/register --compiler ntypescript --project tsconfig.json src/index.ts"
+  },
   "dependencies": {
     "@dbmt/lib": "../lib/",
     "mariadb": "^2.2.0",
     "mongodb": "^3.5.5"
   },
   "devDependencies": {
-    "@types/mongodb": "^3.5.2"
+    "@types/mongodb": "^3.5.2",
+    "tsconfig-paths": "^3.9.0"
   }
 }

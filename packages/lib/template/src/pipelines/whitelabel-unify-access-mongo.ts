@@ -1,4 +1,4 @@
-import { Pipeline } from 'src/lib';
+import { Pipeline } from '@dbmt/lib';
 import { PersonBasicStructureMigration } from '../migrations/PersonBasicStructure';
 import { PopulateAccountsMigration } from '../migrations/PopulateAccounts';
 import { PopulatePasswordsMigration } from '../migrations/PopulatePasswords';
@@ -9,7 +9,7 @@ export class WhitelabelUnifyAccessPipeline extends Pipeline {
   public static id = 'whitelabel-unify-access-pipeline';
   public static description = `Should migrate all whitelabel data from relational to mongodb`;
 
-  public steps = [
+  public static steps = [
     PersonBasicStructureMigration,
     PopulatePersonResponsibleMigration,
     PopulatePhoneNumbersMigration,

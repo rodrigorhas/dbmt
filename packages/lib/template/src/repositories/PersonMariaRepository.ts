@@ -1,4 +1,4 @@
-import { MariaDBConnector } from 'src/lib/connectors';
+import { MariaDBConnector } from "@dbmt/lib/dist/connectors";
 
 export class PersonMariaRepository {
   constructor(private connection: MariaDBConnector) {}
