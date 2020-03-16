@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "./dist/",
+    "declaration": true,
+    "strict": true,
+    "sourceMap": true,
+    "module": "esnext",
+    "target": "es5",
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*"]
+}

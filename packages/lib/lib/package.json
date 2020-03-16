@@ -1,0 +1,22 @@
+{
+  "name": "@dbmt/lib",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch"
+  },
+  "dependencies": {
+    "date-fns": "^2.11.0",
+    "reflect-metadata": "^0.1.13",
+    "winston": "^3.2.1",
+    "winston-console-format": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/mongodb": "^3.5.2",
+    "mariadb": "^2.2.0",
+    "mongodb": "^3.5.5"
+  }
+}

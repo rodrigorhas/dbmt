@@ -1,0 +1,13 @@
+{
+  "name": "@dbmt/template",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@dbmt/lib": "../lib/",
+    "mariadb": "^2.2.0",
+    "mongodb": "^3.5.5"
+  },
+  "devDependencies": {
+    "@types/mongodb": "^3.5.2"
+  }
+}
