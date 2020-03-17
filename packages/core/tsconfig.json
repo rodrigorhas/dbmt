@@ -4,18 +4,24 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "noImplicitAny": false,
-    "outDir": "./dist/",
+    "outDir": "./dist",
     "declaration": true,
     "strict": true,
     "sourceMap": true,
     "module": "CommonJS",
     "target": "es5",
     "lib": ["ES2015"],
-    "baseUrl": "./",
+    "baseUrl": ".",
     "moduleResolution": "node",
+    "typeRoots": [
+      "node_modules/@types",
+    ],
     "paths": {
-      "@/*": ["./src/*"]
+      "core/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": [
+    "./src/**/*",
+    "node_modules/@types"
+  ]
 }
