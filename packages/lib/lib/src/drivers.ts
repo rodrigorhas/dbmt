@@ -1,10 +1,11 @@
 import { AbstractConnector, ConnectorConnection } from './connectors/AbstractConnector';
-import { MigrationRequiredConnection, StaticMigration, Migration } from './migration';
+import { MigrationConnectionDescriptor, StaticMigration, Migration } from './migration';
 import { Type } from './types';
 import { Logger } from './logger';
 
 export class ConnectionManager {
   private instances = new Map<string, ConnectorConnection<any>>();
+  private migrationsConnectionDescriptors = new Map();
 
   constructor(
     private configMap: Record<string, DriverConfig<any, any>>,
@@ -13,18 +14,22 @@ export class ConnectionManager {
 
   public async connect<T extends AbstractConnector<any>>(
     name: string,
-    migrationConnectionConfig?: MigrationRequiredConnection<any>
+    descriptor?: MigrationConnectionDescriptor<any>
   ) {
-    if(migrationConnectionConfig && !this.instances.has(migrationConnectionConfig.name)) {
-      const connectionType = migrationConnectionConfig.type.name;
-      const connectionAlias = migrationConnectionConfig.name;
+
+    const config = descriptor || this.migrationsConnectionDescriptors.get(name)
+
+    /* Connection does not exists at this point */
+    if(!this.instances.has(config.name)) {
+      const connectionType = config.type.name;
+      const connectionAlias = config.name;
 
       Logger.debug(`[dbmt] Attempting to create a connection named '${connectionAlias}' of type ${connectionType}`)
 
       const driverConfig = this.configMap[connectionAlias];
       const connector: AbstractConnector<any> = await driverConfig.setup(
         this.env[driverConfig.namespace],
-        migrationConnectionConfig.type
+        config.type
       )
 
       const connection = await connector.create()
@@ -34,6 +39,12 @@ export class ConnectionManager {
     }
 
     return this.instances.get(name) as T;
+  }
+
+  public addConnectionDescriptors (descriptors: Array<MigrationConnectionDescriptor<any>>) {
+    descriptors.forEach(item => {
+      this.migrationsConnectionDescriptors.set(item.name, item);
+    });
   }
 
   public async createStepConnections (steps: StaticMigration<Migration>[]) {

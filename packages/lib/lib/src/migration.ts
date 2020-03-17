@@ -7,10 +7,10 @@ export interface StaticMigration<T> {
 
   id: string;
   description?: string;
-  connections: Array<MigrationRequiredConnection<any>>;
+  connections: Array<MigrationConnectionDescriptor<any>>;
 }
 
-export interface MigrationRequiredConnection<T extends AbstractConnector<any>> {
+export interface MigrationConnectionDescriptor<T extends AbstractConnector<any>> {
   name: string;
   description: string;
   type: Type<T>;
@@ -19,11 +19,11 @@ export interface MigrationRequiredConnection<T extends AbstractConnector<any>> {
 export abstract class Migration {
   static id: string;
   static description?: string;
-  static connections: Array<MigrationRequiredConnection<any>>;
+  static connections: Array<MigrationConnectionDescriptor<any>>;
 
   constructor(
     protected connectionManager: ConnectionManager
   ) {}
 
-  public async run() {}
+  public async run(): Promise<any> {}
 }
