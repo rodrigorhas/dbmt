@@ -1,8 +1,5 @@
 {
   "name": "root",
-  "scripts": {
-    "publish": "lerna exec -- 'npm publish --access public || exit 0'"
-  },
   "devDependencies": {
     "lerna": "^3.20.2"
   }
