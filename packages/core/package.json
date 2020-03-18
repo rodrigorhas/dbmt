@@ -1,9 +1,25 @@
 {
   "name": "@dbmt/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
+  "author": {
+    "email": "rodrigorhas@gmail.com",
+    "name": "Rodrigo Henrique",
+    "url": "https://github.com/rodrigorhas"
+  },
+  "description": "Database Management Tooling core package - includes all tooling scaffold for ETL ",
+  "licenses": [{
+    "type": "MIT"
+  }],
+  "bugs": {
+    "email": "rodrigorhas@gmail.com",
+    "url": "https://github.com/rodrigorhas/dbmt/issues"
+  },
+  "repository": {
+    "url": "https://github.com/rodrigorhas/dbmt"
+  },
   "scripts": {
     "build": "tsc -b",
     "dev": "tsc -b --watch"
