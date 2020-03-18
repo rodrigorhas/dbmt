@@ -10,9 +10,11 @@
     "url": "https://github.com/rodrigorhas"
   },
   "description": "Database Management Tooling core package - includes all tooling scaffold for ETL ",
-  "licenses": [{
-    "type": "MIT"
-  }],
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
   "bugs": {
     "email": "rodrigorhas@gmail.com",
     "url": "https://github.com/rodrigorhas/dbmt/issues"
