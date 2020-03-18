@@ -1,8 +1,8 @@
 {
   "name": "@dbmt/core",
   "version": "0.1.1",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "license": "MIT",
   "author": {
     "email": "rodrigorhas@gmail.com",
@@ -39,10 +39,5 @@
     "mongodb": "^3.5.5",
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
-  },
-  "publishConfig": {
-    "access": "public",
-    "directory": "dist"
-  },
-  "gitHead": "9c49375eec865446195bc9a4ba2ecae4ce91b783"
+  }
 }
