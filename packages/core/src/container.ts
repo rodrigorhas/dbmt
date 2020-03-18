@@ -1,7 +1,8 @@
 import { ConnectionManager, DriverConfig } from './drivers';
-import { Pipeline, StaticPipeline } from './pipeline';
-import { MigrationConnectionDescriptor } from './migration';
 import { Logger } from './logger';
+import { MigrationConnectionDescriptor } from './migration';
+import { Pipeline, StaticPipeline } from './pipeline';
+import { RuntimeContext } from './types/container';
 
 export class ApplicationContainer {
   constructor (private env: any) {}
@@ -9,6 +10,7 @@ export class ApplicationContainer {
   public async runPipeline(
     pipeline: StaticPipeline<Pipeline>,
     configMap: Record<string, DriverConfig<any, any>>,
+    contextData: any,
   ) {
     const pipe = new pipeline();
 
@@ -23,8 +25,14 @@ export class ApplicationContainer {
       }, [])
     )
 
+    const context: RuntimeContext = {
+      steps: pipeline.steps,
+      connectionManager,
+      data: contextData,
+    }
+
     await pipe.create()
-    await pipe.run(pipeline.steps, connectionManager)
+    await pipe.run(context)
 
     await connectionManager.dispose();
   }

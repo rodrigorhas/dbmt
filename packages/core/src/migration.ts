@@ -1,6 +1,7 @@
-import { Type } from './types';
+import { Type } from './types/common';
 import { AbstractConnector } from './connectors/AbstractConnector';
 import { ConnectionManager } from './drivers';
+import { RuntimeContext } from './types/container';
 
 export interface StaticMigration<T> {
   new (...args: any[]): T;
@@ -25,5 +26,5 @@ export abstract class Migration {
     protected connectionManager: ConnectionManager
   ) {}
 
-  public async run(): Promise<any> {}
+  public async run(context: RuntimeContext): Promise<any> {}
 }

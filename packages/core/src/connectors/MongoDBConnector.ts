@@ -1,5 +1,5 @@
 import * as mongodb from 'mongodb';
-import { ConnectorContext } from '../types';
+import { ConnectorContext } from '../types/common';
 import { AbstractConnector } from './AbstractConnector';
 
 export class MongoDBConnector extends AbstractConnector<mongodb.MongoClient> {

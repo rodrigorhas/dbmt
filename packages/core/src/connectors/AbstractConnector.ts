@@ -1,4 +1,4 @@
-import { ConnectorContext } from '../types';
+import { ConnectorContext } from '../types/common';
 
 export interface ConnectorConnection<T> {
   connection: T;

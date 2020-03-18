@@ -1,6 +1,6 @@
 import { AbstractConnector, ConnectorConnection } from './connectors/AbstractConnector';
 import { MigrationConnectionDescriptor, StaticMigration, Migration } from './migration';
-import { Type } from './types';
+import { Type } from './types/common';
 import { Logger } from './logger';
 
 export class ConnectionManager {

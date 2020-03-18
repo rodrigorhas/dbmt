@@ -5,4 +5,4 @@ export { ApplicationContainer } from './container';
 export { ConnectionManager, DriverConfig } from './drivers';
 export { Environment } from './environment';
 export { Injector } from './injector';
-export { ConnectorContext } from './types';
+export { ConnectorContext } from './types/common';
