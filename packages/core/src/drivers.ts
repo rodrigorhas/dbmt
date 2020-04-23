@@ -30,7 +30,10 @@ export class ConnectionManager {
       const connector: AbstractConnector<any> = await driverConfig.setup(
         this.env[driverConfig.namespace],
         config.type
-      )
+      ).catch((e) => {
+        Logger.error(e.message, e.stack)
+        process.exit(1)
+      })
 
       const connection = await connector.create()
       Logger.debug(`[dbmt] Connection '${connectionAlias}' of type ${connectionType} was succeeded`);
